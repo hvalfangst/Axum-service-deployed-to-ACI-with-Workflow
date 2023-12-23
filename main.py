@@ -14,6 +14,10 @@ def get_credentials():
 def authenticate(username, password):
     return username == "Hvalfangst" and password == "Plankton747"
 
+@app.route('/')
+def home():
+    return "Hey, CookieWurm!"
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -32,4 +36,4 @@ def login():
 
 
 if __name__ == '__main__':
-    app.run(debug=False, host="0.0.0.0", port=5000)
+    app.run(debug=False, host="0.0.0.0", port=80)

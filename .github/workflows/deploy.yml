@@ -1,0 +1,48 @@
+name: Azure CI/CD
+
+on:
+  workflow_dispatch:
+  push:
+
+permissions:
+      id-token: write
+      contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Azure Login with OpenID Connect
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Login to Azure Container Registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: hvalfangstcontainerregistry.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t hvalfangstcontainerregistry.azurecr.io/hvalfangst-nemeses-service:latest .
+          docker push hvalfangstcontainerregistry.azurecr.io/hvalfangst-nemeses-service:latest
+
+      - name: Deploy to Azure Container Instances
+        uses: azure/aci-deploy@v1
+        with:
+          resource-group: hvalfangstresourcegroup
+          dns-name-label: hvalfangst-nemeses
+          name: hvalfangst-nemeses-service
+          image: hvalfangstcontainerregistry.azurecr.io/hvalfangst-nemeses-service:latest
+          location: West Europe
+          registry-login-server: hvalfangstcontainerregistry.azurecr.io
+          registry-username: ${{ secrets.ACR_USERNAME }}
+          registry-password: ${{ secrets.ACR_PASSWORD }}

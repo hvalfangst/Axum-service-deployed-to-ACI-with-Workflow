@@ -9,6 +9,6 @@ WORKDIR /app
 # Install all the dependencies required to run the Flask application
 RUN pip install -r requirements.txt
 # Expose the Docker container for the application to run on port 5000 and set up automatic port-forwarding
-EXPOSE 5000:5000
+EXPOSE 80:80
 # Run the application using gunicorn with 4 workers
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "wsgi:app"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:80", "wsgi:app"]

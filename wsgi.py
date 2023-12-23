@@ -22,7 +22,7 @@ class StandaloneApplication(BaseApplication):
 
 if __name__ == '__main__':
     options = {
-        'bind': '0.0.0.0:5000',
+        'bind': '0.0.0.0:80',
         'workers': 4,
     }
     StandaloneApplication(app, options).run()
