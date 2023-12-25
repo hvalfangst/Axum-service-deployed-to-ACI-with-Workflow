@@ -1,19 +1,19 @@
-# We will use python:3.10-alpine as the base image for building the Flask container
-FROM python:3.11-alpine
-
-# It specifies the working directory where the Docker container will run
+FROM lukemathwalker/cargo-chef:latest-rust-alpine as chef
 WORKDIR /app
 
-# Copying all the application files to the working directory
+FROM chef AS planner
+COPY ./Cargo.toml ./Cargo.lock ./
+COPY ./src ./src
+RUN cargo chef prepare
+
+FROM chef AS builder
+COPY --from=planner /app/recipe.json .
+RUN cargo chef cook --release
 COPY . .
+RUN cargo build --release
+RUN mv ./target/release/hvalfangst_axum_crud ./app
 
+FROM scratch AS runtime
 WORKDIR /app
-
-# Install all the dependencies required to run the Flask application
-RUN pip install -r requirements.txt
-
-# Expose the Docker container for the application to run on port 80
-EXPOSE 80:80
-
-# Run the application using gunicorn with 4 workers
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:80", "wsgi:app"]
+COPY --from=builder /app/app /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/app"]

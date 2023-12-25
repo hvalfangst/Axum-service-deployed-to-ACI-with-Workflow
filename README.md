@@ -1,6 +1,6 @@
 # Azure Container Instances with CI/CD pipeline
 
-Python Flask REST service deployed to Azure Container Instances by GitHub Actions Workflow CI/CD pipeline.
+CRUD service programmed in Rust with Axum deployed to Azure Container Instances by GitHub Actions Workflow CI/CD pipeline.
 Repository pushes will trigger a workflow which builds a docker container based on supplied Dockerfile and
 transmits it to Azure Container Registry (ACR). The associated container is then deployed to Azure Container Instances.
 Since ACI subscribes to a specific image, subsequent pushes will effectively overwrite the current deployment.
@@ -10,7 +10,8 @@ Since ACI subscribes to a specific image, subsequent pushes will effectively ove
 
 * x86-64
 * Linux/Unix
-* [Python 3](https://www.python.org/downloads/)
+* [Rust](https://www.rust-lang.org/tools/install)
+* [Docker](https://www.docker.com/products/docker-desktop/)
 
 ## Creating resources
 
