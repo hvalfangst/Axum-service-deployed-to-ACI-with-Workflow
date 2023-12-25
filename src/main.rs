@@ -1,12 +1,16 @@
-use std::collections::HashMap;
-use std::sync::{Arc, Mutex};
-use crate:: {users::{router::router::users_routes, model::User}};
+use std::{
+    collections::HashMap,
+    sync::{Arc, Mutex}
+};
+use crate::{
+    users::{router::router::users_routes, model::User}
+};
 mod users;
 
 #[tokio::main]
 async fn main() {
 
-    // Arc<Mutex> is necessary as our Vector will be mutated across threads
+    // Arc<Mutex> is necessary as our HashMap will be mutated across threads
     let hashmap: Arc<Mutex<HashMap<String, User>>> = Arc::new(Mutex::new(HashMap::new()));
 
     // Port 80 is chosen due to the very fact that Azure Container Instances targets this

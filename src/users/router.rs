@@ -1,6 +1,8 @@
 pub mod router {
-    use std::{sync::{Arc, Mutex}};
-    use std::collections::HashMap;
+    use std::{
+        sync::{Arc, Mutex},
+        collections::HashMap
+    };
     use axum::{
         extract::{State, Path},
         http::StatusCode,
@@ -9,12 +11,10 @@ pub mod router {
         Json
     };
     use serde_json::{json, Value};
-    use crate::{User};
     use crate::users::{
-        model::{UpsertUser, validate_email},
-        service::service::{create_user, get_user_by_email},
+        model::{UpsertUser, User, validate_email},
+        service::service::{create_user, get_user_by_email, delete_user_by_email, update_user_by_email},
     };
-    use crate::users::service::service::{delete_user_by_email, update_user_by_email};
 
     // - - - - - - - - - - - [ROUTES] - - - - - - - - - - -
 

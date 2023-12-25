@@ -11,7 +11,7 @@ COPY --from=planner /app/recipe.json .
 RUN cargo chef cook --release
 COPY . .
 RUN cargo build --release
-RUN mv ./target/release/hvalfangst_axum_crud ./app
+RUN mv ./target/release/hvalfangst-rust-crud-with-axum ./app
 
 FROM scratch AS runtime
 WORKDIR /app

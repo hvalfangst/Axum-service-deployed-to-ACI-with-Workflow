@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "f1673d62-397d-4ce5-99fa-c0b23762e635",
+		"name": "Axum CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29899311"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ernst@gmail.com\",\r\n    \"password\": \"hiloerst\",\r\n    \"fullname\": \"Ernst van Heuten\",\r\n    \"role\": \"SNOWMAN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "hvalfangst-rust-crud-with-axum.westeurope.azurecontainer.io/users",
+					"host": [
+						"hvalfangst-rust-crud-with-axum",
+						"westeurope",
+						"azurecontainer",
+						"io"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by Email",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ernst@gmail.com\",\r\n    \"password\": \"hiloerst\",\r\n    \"fullname\": \"Ernst van Heuten\",\r\n    \"role\": \"SNOWMAN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "hvalfangst-rust-crud-with-axum.westeurope.azurecontainer.io/users/ernst@gmail.com",
+					"host": [
+						"hvalfangst-rust-crud-with-axum",
+						"westeurope",
+						"azurecontainer",
+						"io"
+					],
+					"path": [
+						"users",
+						"ernst@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User by Email",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ernst@gmail.com\",\r\n    \"password\": \"hiloerst\",\r\n    \"fullname\": \"Ernst van Heuten\",\r\n    \"role\": \"ASCENDANT2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "hvalfangst-rust-crud-with-axum.westeurope.azurecontainer.io/users/ernst@gmail.com",
+					"host": [
+						"hvalfangst-rust-crud-with-axum",
+						"westeurope",
+						"azurecontainer",
+						"io"
+					],
+					"path": [
+						"users",
+						"ernst@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User by Email",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ernst@gmail.com\",\r\n    \"password\": \"hiloerst\",\r\n    \"fullname\": \"Ernst van Heuten\",\r\n    \"role\": \"SNOWMAN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "hvalfangst-rust-crud-with-axum.westeurope.azurecontainer.io/users/ernst@gmail.com",
+					"host": [
+						"hvalfangst-rust-crud-with-axum",
+						"westeurope",
+						"azurecontainer",
+						"io"
+					],
+					"path": [
+						"users",
+						"ernst@gmail.com"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

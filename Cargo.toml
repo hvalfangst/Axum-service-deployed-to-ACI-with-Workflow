@@ -1,5 +1,5 @@
 [package]
-name = "hvalfangst_axum_crud"
+name = "hvalfangst-rust-crud-with-axum"
 version = "0.1.0"
 edition = "2021"
 
@@ -18,6 +18,6 @@ http = "0.2.9"
 regex = "1.5"
 
 [[bin]]
-name = "hvalfangst_axum_crud"
+name = "hvalfangst-rust-crud-with-axum"
 path = "src/main.rs"
 
